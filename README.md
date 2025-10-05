@@ -265,7 +265,7 @@ O relatório HTML é gerado em `coverage/index.html` e pode ser aberto no navega
 
 ## 🔧 Configuração do Vitest
 
-**Arquivo:** `vite.config.ts`
+**Arquivo:** `vitest.config.ts`
 
 ```typescript
 export default defineConfig({
