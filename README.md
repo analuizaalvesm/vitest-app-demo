@@ -62,6 +62,69 @@ npm run dev
 npm test
 ```
 
+---
+
+### 🛠 Tutorial de Configuração do Vitest
+
+1. **Instale o Vitest e dependências recomendadas:**
+
+```bash
+npm install --save-dev vitest @testing-library/react @testing-library/jest-dom jsdom msw
+```
+
+2. **Crie o arquivo de configuração `vitest.config.ts`:**
+
+```typescript
+// vitest.config.ts
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    globals: true, // Funções globais (describe, it, expect)
+    environment: "jsdom", // Ambiente DOM para React
+    setupFiles: ["./src/test/setup.ts"], // Setup global
+    css: true, // Suporte a CSS nos testes
+    include: ["**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+    coverage: {
+      reporter: ["text", "json", "html"],
+      exclude: [
+        "node_modules/",
+        "src/test/",
+        "**/*.d.ts",
+        "**/*.config.*",
+        "dist/",
+      ],
+    },
+  },
+});
+```
+
+3. **(Opcional) Configure o arquivo de setup global:**
+
+Crie `src/test/setup.ts` para importar utilitários globais, como jest-dom:
+
+```typescript
+// src/test/setup.ts
+import "@testing-library/jest-dom";
+```
+
+4. **Adicione scripts ao `package.json`:**
+
+```json
+"scripts": {
+  "test": "vitest",
+  "test:ui": "vitest --ui",
+  "test:watch": "vitest --watch",
+  "test:run": "vitest run",
+  "test:coverage": "vitest run --coverage",
+  "test:unit": "vitest run src/**/*.unit.test.ts"
+}
+```
+
+---
+
+Com esses passos, o Vitest estará pronto para uso com React, TypeScript e Testing Library, incluindo suporte a mocks, cobertura e interface visual.
+
 ## 📜 Scripts Disponíveis
 
 | Script                  | Descrição                            |
@@ -297,32 +360,6 @@ O relatório HTML é gerado em `coverage/index.html` e pode ser aberto no navega
 - Carregamento de usuários e posts
 - Estados de loading e erro
 - Mocking completo para testes
-
-## 🔧 Configuração do Vitest
-
-**Arquivo:** `vitest.config.ts`
-
-```typescript
-export default defineConfig({
-  test: {
-    globals: true, // Funções globais (describe, it, expect)
-    environment: "jsdom", // Ambiente DOM para React
-    setupFiles: ["./src/test/setup.ts"],
-    css: true, // Suporte a CSS nos testes
-    include: ["**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    coverage: {
-      reporter: ["text", "json", "html"],
-      exclude: [
-        "node_modules/",
-        "src/test/",
-        "**/*.d.ts",
-        "**/*.config.*",
-        "dist/",
-      ],
-    },
-  },
-});
-```
 
 ## 🚀 Próximos Passos
 
