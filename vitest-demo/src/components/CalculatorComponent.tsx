@@ -47,12 +47,17 @@ export const CalculatorComponent: React.FC<CalculatorComponentProps> = ({
           calculationResult = calculator.power(n1, n2);
           break;
         default:
-          throw new Error("Invalid operation");
+          setError("Invalid operation");
+          setResult("");
+          return;
       }
 
-      setResult(calculationResult.toString());
+      if (typeof calculationResult !== "undefined") {
+        setResult(calculationResult.toString());
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
+      setResult("");
     }
   };
 
@@ -72,7 +77,7 @@ export const CalculatorComponent: React.FC<CalculatorComponentProps> = ({
         <input
           id="num1"
           data-testid="num1-input"
-          type="number"
+          type="text"
           value={num1}
           onChange={(e) => setNum1(e.target.value)}
           placeholder="Digite o primeiro número"
@@ -100,7 +105,7 @@ export const CalculatorComponent: React.FC<CalculatorComponentProps> = ({
         <input
           id="num2"
           data-testid="num2-input"
-          type="number"
+          type="text"
           value={num2}
           onChange={(e) => setNum2(e.target.value)}
           placeholder="Digite o segundo número"

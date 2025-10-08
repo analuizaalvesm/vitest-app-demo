@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import type { Mock } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import React from "react";
 import { UserList } from "./UserList";
 import type { ApiService, User, Post } from "../services/apiService";
 
@@ -58,7 +58,7 @@ describe("UserList - Testes de Fluxo de Controle", () => {
    */
   describe("loadUsers - sucesso", () => {
     it("deve exibir loading, carregar lista e esconder loading", async () => {
-      (api.getUsers as vi.Mock).mockResolvedValue(makeUsers(2));
+      (api.getUsers as Mock).mockResolvedValue(makeUsers(2));
       renderWithApi(api);
 
       // Loading overlay durante a chamada inicial (useEffect)
@@ -77,7 +77,7 @@ describe("UserList - Testes de Fluxo de Controle", () => {
     });
 
     it("deve lidar com lista vazia (sucesso com [])", async () => {
-      (api.getUsers as vi.Mock).mockResolvedValue([]);
+      (api.getUsers as Mock).mockResolvedValue([]);
       renderWithApi(api);
 
       await waitFor(() => {
@@ -92,11 +92,13 @@ describe("UserList - Testes de Fluxo de Controle", () => {
    */
   describe("loadUsers - erro", () => {
     it("deve exibir mensagem de erro quando getUsers rejeita", async () => {
-      (api.getUsers as vi.Mock).mockRejectedValue(new Error("Falha ao listar"));
+      (api.getUsers as Mock).mockRejectedValue(new Error("Falha ao listar"));
       renderWithApi(api);
 
       await waitFor(() => {
-        expect(screen.getByTestId("error")).toHaveTextContent("Error: Falha ao listar");
+        expect(screen.getByTestId("error")).toHaveTextContent(
+          "Error: Falha ao listar"
+        );
       });
 
       // Loading some
@@ -104,11 +106,13 @@ describe("UserList - Testes de Fluxo de Controle", () => {
     });
 
     it("deve exibir mensagem genérica se o erro não for Error instance", async () => {
-      (api.getUsers as vi.Mock).mockRejectedValue("string error");
+      (api.getUsers as Mock).mockRejectedValue("string error");
       renderWithApi(api);
 
       await waitFor(() => {
-        expect(screen.getByTestId("error")).toHaveTextContent("Error: Failed to load users");
+        expect(screen.getByTestId("error")).toHaveTextContent(
+          "Error: Failed to load users"
+        );
       });
     });
   });
@@ -118,8 +122,8 @@ describe("UserList - Testes de Fluxo de Controle", () => {
    */
   describe("handleUserSelect - sucesso", () => {
     it("deve selecionar usuário, exibir loading, carregar posts e marcar selecionado", async () => {
-      (api.getUsers as vi.Mock).mockResolvedValue(makeUsers(2));
-      (api.getUserPosts as vi.Mock).mockResolvedValue(makePosts(1, 2));
+      (api.getUsers as Mock).mockResolvedValue(makeUsers(2));
+      (api.getUserPosts as Mock).mockResolvedValue(makePosts(1, 2));
 
       renderWithApi(api);
 
@@ -147,8 +151,8 @@ describe("UserList - Testes de Fluxo de Controle", () => {
     });
 
     it("deve exibir empty-state quando usuário não possui posts", async () => {
-      (api.getUsers as vi.Mock).mockResolvedValue(makeUsers(1));
-      (api.getUserPosts as vi.Mock).mockResolvedValue([]);
+      (api.getUsers as Mock).mockResolvedValue(makeUsers(1));
+      (api.getUserPosts as Mock).mockResolvedValue([]);
 
       renderWithApi(api);
 
@@ -159,7 +163,9 @@ describe("UserList - Testes de Fluxo de Controle", () => {
       fireEvent.click(screen.getByTestId("user-item-1"));
 
       await waitFor(() => {
-        expect(screen.getByTestId("no-posts")).toHaveTextContent("Nenhum post para este usuário.");
+        expect(screen.getByTestId("no-posts")).toHaveTextContent(
+          "Nenhum post para este usuário."
+        );
       });
     });
   });
@@ -169,8 +175,8 @@ describe("UserList - Testes de Fluxo de Controle", () => {
    */
   describe("handleUserSelect - erro", () => {
     it("deve exibir erro específico quando getUserPosts falhar", async () => {
-      (api.getUsers as vi.Mock).mockResolvedValue(makeUsers(1));
-      (api.getUserPosts as vi.Mock).mockRejectedValue(new Error("Falha posts"));
+      (api.getUsers as Mock).mockResolvedValue(makeUsers(1));
+      (api.getUserPosts as Mock).mockRejectedValue(new Error("Falha posts"));
 
       renderWithApi(api);
 
@@ -181,13 +187,15 @@ describe("UserList - Testes de Fluxo de Controle", () => {
       fireEvent.click(screen.getByTestId("user-item-1"));
 
       await waitFor(() => {
-        expect(screen.getByTestId("error")).toHaveTextContent("Error: Falha posts");
+        expect(screen.getByTestId("error")).toHaveTextContent(
+          "Error: Falha posts"
+        );
       });
     });
 
     it("deve exibir mensagem genérica quando rejeitar com valor não-Error", async () => {
-      (api.getUsers as vi.Mock).mockResolvedValue(makeUsers(1));
-      (api.getUserPosts as vi.Mock).mockRejectedValue("string error");
+      (api.getUsers as Mock).mockResolvedValue(makeUsers(1));
+      (api.getUserPosts as Mock).mockRejectedValue("string error");
 
       renderWithApi(api);
 
@@ -198,7 +206,9 @@ describe("UserList - Testes de Fluxo de Controle", () => {
       fireEvent.click(screen.getByTestId("user-item-1"));
 
       await waitFor(() => {
-        expect(screen.getByTestId("error")).toHaveTextContent("Error: Failed to load user posts");
+        expect(screen.getByTestId("error")).toHaveTextContent(
+          "Error: Failed to load user posts"
+        );
       });
     });
   });
@@ -209,14 +219,16 @@ describe("UserList - Testes de Fluxo de Controle", () => {
   describe("Refresh / estados assíncronos", () => {
     it("deve limpar erro ao clicar em Atualizar e recarregar usuários", async () => {
       // 1º load falha
-      (api.getUsers as vi.Mock).mockRejectedValueOnce(new Error("Erro inicial"));
+      (api.getUsers as Mock).mockRejectedValueOnce(new Error("Erro inicial"));
       // 2º load sucesso
-      (api.getUsers as vi.Mock).mockResolvedValueOnce(makeUsers(1));
+      (api.getUsers as Mock).mockResolvedValueOnce(makeUsers(1));
 
       renderWithApi(api);
 
       await waitFor(() => {
-        expect(screen.getByTestId("error")).toHaveTextContent("Error: Erro inicial");
+        expect(screen.getByTestId("error")).toHaveTextContent(
+          "Error: Erro inicial"
+        );
       });
 
       const refreshBtn = screen.getByTestId("refresh-button");
@@ -236,7 +248,7 @@ describe("UserList - Testes de Fluxo de Controle", () => {
     it("deve desabilitar botão Refresh enquanto loading=true", async () => {
       // Simula chamada que demora: pendente até resolver manualmente
       let resolver!: () => void;
-      (api.getUsers as vi.Mock).mockImplementation(
+      (api.getUsers as Mock).mockImplementation(
         () =>
           new Promise<User[]>((resolve) => {
             resolver = () => resolve(makeUsers(1));
@@ -260,7 +272,7 @@ describe("UserList - Testes de Fluxo de Controle", () => {
   });
 
   /**
-   * Cobertura de caminhos 
+   * Cobertura de caminhos
    */
   describe("Cobertura de Caminhos (resumo)", () => {
     it("cobre ramos de loadUsers (sucesso/erro/[]), handleUserSelect (sucesso/erro/[]), e refresh", () => {
