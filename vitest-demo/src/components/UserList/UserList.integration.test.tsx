@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { UserList } from "./UserList";
-import { ApiService } from "../services/apiService";
-import type { User, Post } from "../services/apiService";
+import { ApiService } from "../../services/apiService";
+import type { User, Post } from "../../services/apiService";
 
 /**
  * TESTES DE INTEGRAÇÃO COM MOCKS - USER LIST COMPONENT

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Calculator } from "../utils";
+import { Calculator } from "../../utils";
 
 interface CalculatorComponentProps {
   testId?: string;

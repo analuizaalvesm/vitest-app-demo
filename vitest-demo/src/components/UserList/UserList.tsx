@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { ApiService } from "../services/apiService";
-import type { User, Post } from "../services/apiService";
+import { ApiService } from "../../services/apiService";
+import type { User, Post } from "../../services/apiService";
 
 interface UserListProps {
   apiService?: ApiService;

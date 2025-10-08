@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { Mock } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { UserList } from "./UserList";
-import type { ApiService, User, Post } from "../services/apiService";
+import type { ApiService, User, Post } from "../../services/apiService";
 
 /**
  * TESTES BASEADOS EM GRAFO DE FLUXO DE CONTROLE - USER LIST

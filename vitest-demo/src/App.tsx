@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import { CalculatorComponent } from "./components/CalculatorComponent";
-import { TodoList } from "./components/TodoList";
-import { UserList } from "./components/UserList";
+import { CalculatorComponent } from "./components/Calculator/CalculatorComponent";
+import { TodoList } from "./components/TodoList/TodoList";
+import { UserList } from "./components/UserList/UserList";
 
 function App() {
   const [activeTab, setActiveTab] = useState<"calculator" | "todos" | "users">(

@@ -2,7 +2,7 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { CalculatorComponent } from "./CalculatorComponent";
-import * as utils from "../utils";
+import * as utils from "../../utils";
 
 /**
  * TESTES BASEADOS EM GRAFO DE FLUXO DE CONTROLE - COMPONENTE REACT
@@ -20,7 +20,7 @@ import * as utils from "../utils";
  */
 
 // Mock do Calculator para controlar os caminhos de teste
-vi.mock("../utils", () => ({
+vi.mock("../../utils", () => ({
   Calculator: vi.fn(() => ({
     add: vi.fn(),
     subtract: vi.fn(),
