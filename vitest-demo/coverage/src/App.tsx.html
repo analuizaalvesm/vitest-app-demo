@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/93</span>
+                <span class='fraction'>0/95</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/93</span>
+                <span class='fraction'>0/95</span>
             </div>
         
             
@@ -156,7 +156,11 @@
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -251,9 +255,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useState } from "react";</span></span></span>
 <span class="cstat-no" title="statement not covered" >import "./App.css";</span>
-<span class="cstat-no" title="statement not covered" >import { CalculatorComponent } from "./components/CalculatorComponent";</span>
-<span class="cstat-no" title="statement not covered" >import { TodoList } from "./components/TodoList";</span>
-<span class="cstat-no" title="statement not covered" >import { UserList } from "./components/UserList";</span>
+<span class="cstat-no" title="statement not covered" >import { CalculatorComponent } from "./components/Calculator/CalculatorComponent";</span>
+<span class="cstat-no" title="statement not covered" >import { TodoList } from "./components/TodoList/TodoList";</span>
+<span class="cstat-no" title="statement not covered" >import { UserList } from "./components/UserList/UserList";</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >function App() {</span>
 <span class="cstat-no" title="statement not covered" >  const [activeTab, setActiveTab] = useState&lt;"calculator" | "todos" | "users"&gt;(</span>
@@ -263,8 +267,8 @@
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;div className="app"&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;header className="app-header"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;h1&gt;Vitest Demo Application&lt;/h1&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;p&gt;Demonstração de testes caixa-preta, caixa-branca e caixa-cinza&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;h1&gt;Vitest - Aplicação Demo&lt;/h1&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;h3&gt;Trabalho Prático I - Teste de Software&lt;/h3&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >        &lt;nav className="tab-navigation"&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;button</span>
@@ -272,71 +276,73 @@
 <span class="cstat-no" title="statement not covered" >            className={activeTab === "calculator" ? "active" : ""}</span>
 <span class="cstat-no" title="statement not covered" >            onClick={() =&gt; setActiveTab("calculator")}</span>
 <span class="cstat-no" title="statement not covered" >          &gt;</span>
-<span class="cstat-no" title="statement not covered" >            Calculator</span>
+<span class="cstat-no" title="statement not covered" >            Calculadora</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/button&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;button</span>
 <span class="cstat-no" title="statement not covered" >            data-testid="todos-tab"</span>
 <span class="cstat-no" title="statement not covered" >            className={activeTab === "todos" ? "active" : ""}</span>
 <span class="cstat-no" title="statement not covered" >            onClick={() =&gt; setActiveTab("todos")}</span>
 <span class="cstat-no" title="statement not covered" >          &gt;</span>
-<span class="cstat-no" title="statement not covered" >            Todo List</span>
+<span class="cstat-no" title="statement not covered" >            To-do List</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/button&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;button</span>
 <span class="cstat-no" title="statement not covered" >            data-testid="users-tab"</span>
 <span class="cstat-no" title="statement not covered" >            className={activeTab === "users" ? "active" : ""}</span>
 <span class="cstat-no" title="statement not covered" >            onClick={() =&gt; setActiveTab("users")}</span>
 <span class="cstat-no" title="statement not covered" >          &gt;</span>
-<span class="cstat-no" title="statement not covered" >            Users (API)</span>
+<span class="cstat-no" title="statement not covered" >            Usuários (API)</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/button&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/nav&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/header&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      &lt;main className="app-main"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {activeTab === "calculator" &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;section className="tab-panel"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;div className="panel-header"&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;h2&gt;Calculadora&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;div className="panel-description"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                Esta seção demonstra testes de unidade (caixa-branca) focados</span>
-<span class="cstat-no" title="statement not covered" >                em:</span>
-<span class="cstat-no" title="statement not covered" >                &lt;ul&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    Lógica aritmética: add, subtract, multiply, divide, power.</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    Tratamento de erros (divisão por zero, entradas inválidas).</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    Validação de fluxo: limpar estado e cálculo sequencial.</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;/ul&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div className="app-content"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;main className="app-main"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          {activeTab === "calculator" &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >            &lt;section className="tab-panel"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;div className="panel-header"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;h2&gt;Calculadora&lt;/h2&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;div className="panel-description"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                  Esta seção demonstra testes de unidade focados em:</span>
+<span class="cstat-no" title="statement not covered" >                  &lt;ul&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                      Lógica aritmética: add, subtract, multiply, divide, power.</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                      Tratamento de erros (divisão por zero, entradas</span>
+<span class="cstat-no" title="statement not covered" >                      inválidas).</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                      Validação de fluxo: limpar estado e cálculo sequencial.</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                  &lt;/ul&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;CalculatorComponent /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/section&gt;</span>
-<span class="cstat-no" title="statement not covered" >        )}</span>
-<span class="cstat-no" title="statement not covered" >        {activeTab === "todos" &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;section className="tab-panel"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;div className="panel-header"&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;h2&gt;Todo List&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;div className="panel-description"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                Aqui exploramos testes de componente/integration (caixa-cinza):</span>
-<span class="cstat-no" title="statement not covered" >                &lt;ul&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;li&gt;Criação, toggle e remoção de itens.&lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;li&gt;Estados derivados (contagem concluídos vs total).&lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;li&gt;Empty state e acessibilidade via data-testid.&lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;/ul&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;CalculatorComponent /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/section&gt;</span>
+<span class="cstat-no" title="statement not covered" >          )}</span>
+<span class="cstat-no" title="statement not covered" >          {activeTab === "todos" &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >            &lt;section className="tab-panel"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;div className="panel-header"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;h2&gt;Todo List&lt;/h2&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;div className="panel-description"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                  Aqui exploramos testes de componente/integration:</span>
+<span class="cstat-no" title="statement not covered" >                  &lt;ul&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;li&gt;Criação, toggle e remoção de itens.&lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;li&gt;Estados derivados (contagem concluídos vs total).&lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                    &lt;li&gt;Empty state e acessibilidade via data-testid.&lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >                  &lt;/ul&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;TodoList /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/section&gt;</span>
-<span class="cstat-no" title="statement not covered" >        )}</span>
-<span class="cstat-no" title="statement not covered" >        {activeTab === "users" &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;section className="tab-panel"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;UserList /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/section&gt;</span>
-<span class="cstat-no" title="statement not covered" >        )}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/main&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;TodoList /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/section&gt;</span>
+<span class="cstat-no" title="statement not covered" >          )}</span>
+<span class="cstat-no" title="statement not covered" >          {activeTab === "users" &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >            &lt;section className="tab-panel"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;UserList /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/section&gt;</span>
+<span class="cstat-no" title="statement not covered" >          )}</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/main&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >}</span>
@@ -349,7 +355,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-05T19:29:31.189Z
+                at 2025-10-08T19:19:50.521Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -64,17 +64,16 @@ npm test
 
 ## 📜 Scripts Disponíveis
 
-| Script                     | Descrição                            |
-| -------------------------- | ------------------------------------ |
-| `npm run dev`              | Inicia o servidor de desenvolvimento |
-| `npm run build`            | Gera build de produção               |
-| `npm test`                 | Executa testes em modo watch         |
-| `npm run test:ui`          | **Interface gráfica do Vitest**      |
-| `npm run test:watch`       | **Modo watch para desenvolvimento**  |
-| `npm run test:run`         | Executa todos os testes uma vez      |
-| `npm run test:coverage`    | **Gera relatório de cobertura**      |
-| `npm run test:unit`        | Executa apenas testes unitários      |
-| `npm run test:integration` | Executa apenas testes de integração  |
+| Script                  | Descrição                            |
+| ----------------------- | ------------------------------------ |
+| `npm run dev`           | Inicia o servidor de desenvolvimento |
+| `npm run build`         | Gera build de produção               |
+| `npm test`              | Executa testes em modo watch         |
+| `npm run test:ui`       | **Interface gráfica do Vitest**      |
+| `npm run test:watch`    | **Modo watch para desenvolvimento**  |
+| `npm run test:run`      | Executa todos os testes uma vez      |
+| `npm run test:coverage` | **Gera relatório de cobertura**      |
+| `npm run test:unit`     | Executa apenas testes unitários      |
 
 ## 📁 Estrutura do Projeto
 
@@ -84,7 +83,6 @@ src/
 │   ├── CalculatorComponent.tsx
 │   ├── TodoList.tsx
 │   ├── UserList.tsx
-│   ├── *.integration.test.tsx  # Testes de integração
 ├── services/            # Serviços e APIs
 │   ├── apiService.ts
 │   └── *.unit.test.ts   # Testes unitários com mocks
@@ -158,6 +156,46 @@ it("deve fazer trim do nome e converter email para lowercase", () => {
 });
 ```
 
+### 4. **Testes de Integração** 🔗
+
+**Arquivos:**
+
+- `src/components/Calculator/CalculatorComponent.integration.test.tsx`
+- `src/components/TodoList/TodoList.integration.test.tsx`
+- `src/components/UserList/UserList.integration.test.tsx`
+
+Testam o funcionamento conjunto de componentes React, lógica de negócio e serviços, simulando fluxos completos de usuário, eventos de UI e integração com APIs (mockadas).
+
+```typescript
+// Exemplo: Integração entre UI e lógica
+it("deve calcular corretamente ao clicar no botão", () => {
+  render(<CalculatorComponent />);
+  // ...interações e validações
+});
+```
+
+### 5. **Testes de Fluxo de Controle**
+
+**Arquivos:**
+
+- `src/utils/calculator.control-flow.test.ts`
+- `src/components/Calculator/CalculatorComponent.control-flow.test.tsx`
+- `src/components/TodoList/TodoList.control-flow.test.tsx`
+
+Utilizam análise de grafo de fluxo de controle e complexidade ciclomática para garantir cobertura de todos os caminhos relevantes do código, incluindo ramos condicionais, tratamento de exceções e estados derivados.
+
+### 6. **Partição de Equivalência**
+
+Divisão dos domínios de entrada em classes equivalentes para otimizar a cobertura dos testes, como casos de divisão por zero versus divisão normal.
+
+### 7. **Tabelas de Decisão**
+
+Estruturação dos cenários de teste conforme combinações de condições e ações esperadas, especialmente em funções com múltiplos ramos de decisão (exemplo: função `power`).
+
+### 8. **Testes de Valor Limite (Boundary Value)**
+
+Validação do comportamento do sistema em situações extremas, como valores máximos, mínimos e casos de borda, presentes em `src/utils/calculator.boundary.test.ts`.
+
 ## 🧪 Tipos de Teste Implementados
 
 ### **Testes Unitários**
@@ -227,9 +265,6 @@ All files                 |   84.7  |   91.2   |  94.11  |   84.7  |
 ```bash
 # Apenas testes unitários
 npm run test:unit
-
-# Apenas testes de integração
-npm run test:integration
 ```
 
 ## 📈 Relatórios de Cobertura
@@ -269,15 +304,21 @@ O relatório HTML é gerado em `coverage/index.html` e pode ser aberto no navega
 
 ```typescript
 export default defineConfig({
-  plugins: [react()],
   test: {
     globals: true, // Funções globais (describe, it, expect)
     environment: "jsdom", // Ambiente DOM para React
     setupFiles: ["./src/test/setup.ts"],
     css: true, // Suporte a CSS nos testes
+    include: ["**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     coverage: {
       reporter: ["text", "json", "html"],
-      exclude: ["node_modules/", "src/test/", "**/*.d.ts"],
+      exclude: [
+        "node_modules/",
+        "src/test/",
+        "**/*.d.ts",
+        "**/*.config.*",
+        "dist/",
+      ],
     },
   },
 });
@@ -285,13 +326,10 @@ export default defineConfig({
 
 ## 🚀 Próximos Passos
 
-Para expandir ainda mais a demonstração, você pode:
-
 1. **Adicionar testes E2E** com Playwright
 2. **Implementar testes de performance**
-3. **Configurar CI/CD** com GitHub Actions
-4. **Adicionar testes de acessibilidade**
-5. **Implementar testes de snapshot**
+3. **Adicionar testes de acessibilidade**
+4. **Implementar testes de snapshot**
 
 ---
 
